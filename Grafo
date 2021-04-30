@@ -1,0 +1,59 @@
+%matplotlib inline
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+fig = plt.figure(figsize=(12,9))
+
+m = Basemap(projection='mill',
+           llcrnrlat = -19,
+           urcrnrlat = 2,
+           llcrnrlon = -82,
+           urcrnrlon = -68,
+           resolution = 'f')
+
+m.drawcountries(color='b')
+m.drawstates(color='b')
+m.drawcoastlines()
+m.bluemarble()
+
+xs=[]
+ys=[]
+
+x1Lat, Y1Lon = -74.580552, -15.308706
+xpt, ypt =m(x1Lat, Y1Lon)
+xs.append(xpt)
+ys.append(ypt)
+m.plot(xpt, ypt, 'c*', markersize=20)
+
+x2Lat, Y2Lon = 74.593175, -15.362735
+xpt, ypt =m(x2Lat, Y2Lon)
+xs.append(xpt)
+ys.append(ypt)
+m.plot(xpt, ypt, 'g*', markersize=20)
+
+x3Lat, Y3Lon = -74.580552, 15.308706
+xpt, ypt =m(x3Lat, Y3Lon)
+xs.append(xpt)
+ys.append(ypt)
+m.plot(xpt, ypt, 'c*', markersize=20)
+
+x4Lat, Y4Lon = 74.580552, 15.308706
+xpt, ypt =m(x4Lat, Y4Lon)
+xs.append(xpt)
+ys.append(ypt)
+m.plot(xpt, ypt, 'w*', markersize=20)
+
+m.plot(xs, ys, color = 'r')
+
+m.drawparallels(np.arange(-90,90,10),labels=[True,False,False,False])
+m.drawmeridians(np.arange(-180,180,30),labels=[0,0,0,1])
+
+colors = ['green', 'darkblue', 'yellow', 'red', 'blue', 'orange']
+
+m.scatter(-135,60,latlon=True, s=5000, c='blue', marker='^', alpha=1, edgecolor='k', linewidth=1, zorder=1)
+
+plt.title('Peru Geography', fontsize=20)
+
+plt.show()
