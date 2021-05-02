@@ -1,0 +1,9 @@
+#Ingresa los datos de la hoja a una lista de longitud y retorna la lista
+def rellenar_datos_Longitud(Hoja = []):
+
+  Longitud = []
+
+  for i in range(2, Hoja.max_row+1):
+    Longitud.append(Hoja.cell(row=i, column=4).value)
+    
+  return Longitud
