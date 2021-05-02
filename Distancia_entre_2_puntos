@@ -1,0 +1,14 @@
+#Se usara la formula de Haversine para detreminar la distancia entre 2 puntos
+def Distancia_entre_puntos(x1Lati, y1longi, x2Lati, y2Longi):
+
+  import math
+
+  R = 6378
+  difLati = x2Lati - x1Lati
+  difLongi = y2Longi - y1longi
+
+  a = math.sin(difLati/2)**2 + (math.cos(x1Lati)*math.cos(x2Lati)*math.sin(difLongi/2)**2)
+  c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+  d = R*c
+
+  return d
