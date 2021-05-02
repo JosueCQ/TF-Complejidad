@@ -1,0 +1,42 @@
+!sudo apt-get install libgeos-3.5.0
+!sudo apt-get install libgeos-dev
+!pip install https://github.com/matplotlib/basemap/archive/master.zip
+
+%matplotlib inline
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+Hoja = Export_Excel_g_colab()
+Lati = rellenar_datos_Latitud(Hoja)
+Longi = rellenar_datos_Longitud(Hoja)
+
+
+id = 1
+
+fig = plt.figure(figsize=(20,15))
+m = Basemap(projection='mill',
+            llcrnrlat = llcrnrlatList[id],
+            urcrnrlat = urcrnrlatList[id],
+            llcrnrlon = llcrnrlonList[id],
+            urcrnrlon = urcrnrlonList[id],
+            resolution = 'i')
+
+xs=[]
+ys=[]
+
+for i in range(len(Lati)):
+  xLat, yLon = Longi[i], Lati[i]
+  xpt, ypt =m(xLat, yLon)
+  xs.append(xpt)
+  ys.append(ypt)
+  m.plot(xpt, ypt, 'c.', markersize=20)
+
+m.drawcountries(color='w', linewidth= 2)
+m.drawstates(color='b', linewidth= 1)
+m.drawcoastlines(color='w', linewidth= 2)
+m.bluemarble()
+
+plt.title('Peru Geography', fontsize=20)
+plt.show()
