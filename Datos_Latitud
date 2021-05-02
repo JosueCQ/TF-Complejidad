@@ -1,0 +1,9 @@
+#Ingresa los datos de la hoja a una lista de latitud y retorna la lista
+def rellenar_datos_Latitud(Hoja = []):
+
+  Latitud = []
+
+  for i in range(2, Hoja.max_row+1):
+    Latitud.append(Hoja.cell(row=i, column=3).value)
+    
+  return Latitud
